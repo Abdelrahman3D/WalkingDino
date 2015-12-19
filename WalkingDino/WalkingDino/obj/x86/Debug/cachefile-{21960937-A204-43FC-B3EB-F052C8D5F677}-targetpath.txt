@@ -1,0 +1,2 @@
+Content\DinoGreen_clr_0.xnb
+Content\Walking.xnb

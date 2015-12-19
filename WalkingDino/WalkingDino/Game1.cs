@@ -20,6 +20,10 @@ namespace WalkingDino
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Model Dino;
+        AnimationPlayer DinoPlayer;
+        SkinningData DinoSkinningData;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,7 +52,20 @@ namespace WalkingDino
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // Load the model.
+            Dino = Content.Load<Model>("Walking");
+
+            // Look up our custom skinning information.
+            DinoSkinningData = Dino.Tag as SkinningData;
+
+
+            // Create an animation player, and start decoding an animation clip.
+            DinoPlayer = new AnimationPlayer(DinoSkinningData);
+
+            AnimationClip clip = DinoSkinningData.AnimationClips["Take 001"];
+
+            DinoPlayer.StartClip(clip);
+
         }
 
         /// <summary>
@@ -71,7 +88,7 @@ namespace WalkingDino
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            DinoPlayer.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
 
             base.Update(gameTime);
         }
@@ -84,7 +101,35 @@ namespace WalkingDino
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            Matrix[] bones = DinoPlayer.GetSkinTransforms();
+
+            // Compute camera matrices.
+            Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 50),
+                                              new Vector3(0, 0, 0), Vector3.Up);
+
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
+                                                                    GraphicsDevice.Viewport.AspectRatio,
+                                                                    1,
+                                                                    10000);
+
+            // Render the skinned mesh.
+            foreach (ModelMesh mesh in Dino.Meshes)
+            {
+                foreach (SkinnedEffect effect in mesh.Effects)
+                {
+                    effect.SetBoneTransforms(bones);
+
+                    effect.View = view;
+                    effect.Projection = projection;
+
+                    effect.EnableDefaultLighting();
+
+                    effect.SpecularColor = new Vector3(0.25f);
+                    effect.SpecularPower = 16;
+                }
+
+                mesh.Draw();
+            }
 
             base.Draw(gameTime);
         }

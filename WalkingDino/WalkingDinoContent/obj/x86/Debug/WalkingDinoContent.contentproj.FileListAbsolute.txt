@@ -1,0 +1,2 @@
+\\vmware-host\Shared Folders\Documents\WalkingDino\WalkingDino\WalkingDinoContent\obj\x86\Debug\WalkingDinoContent.contentprojResolveAssemblyReference.cache
+C:\Users\Abdelrahman3D\Desktop\WalkingDino\WalkingDino\WalkingDinoContent\obj\x86\Debug\WalkingDinoContent.contentprojResolveAssemblyReference.cache
