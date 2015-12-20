@@ -36,8 +36,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Walking.fbx">
-      <Name>Walking</Name>
+    <Compile Include="Dino.fbx">
+      <Name>Dino</Name>
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
     </Compile>

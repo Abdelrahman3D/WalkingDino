@@ -22,6 +22,7 @@ namespace WalkingDino
 
         Model Dino;
         AnimationPlayer DinoPlayer;
+        ClipPlayer DinoClipPlayer;
         SkinningData DinoSkinningData;
 
         public Game1()
@@ -53,18 +54,18 @@ namespace WalkingDino
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load the model.
-            Dino = Content.Load<Model>("Walking");
+            Dino = Content.Load<Model>("Dino");
 
             // Look up our custom skinning information.
             DinoSkinningData = Dino.Tag as SkinningData;
 
 
             // Create an animation player, and start decoding an animation clip.
-            DinoPlayer = new AnimationPlayer(DinoSkinningData);
+            DinoClipPlayer = new ClipPlayer(DinoSkinningData, 24);
 
             AnimationClip clip = DinoSkinningData.AnimationClips["Take 001"];
 
-            DinoPlayer.StartClip(clip);
+           DinoClipPlayer.play(clip, 0, 84, true);
 
         }
 
@@ -88,7 +89,7 @@ namespace WalkingDino
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            DinoPlayer.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
+            DinoClipPlayer.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
 
             base.Update(gameTime);
         }
@@ -101,10 +102,10 @@ namespace WalkingDino
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            Matrix[] bones = DinoPlayer.GetSkinTransforms();
+            Matrix[] bones = DinoClipPlayer.GetSkinTransforms();
 
             // Compute camera matrices.
-            Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 50),
+            Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 10),
                                               new Vector3(0, 0, 0), Vector3.Up);
 
             Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,

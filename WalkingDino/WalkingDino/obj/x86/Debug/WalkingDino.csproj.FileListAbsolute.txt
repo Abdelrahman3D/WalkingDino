@@ -10,3 +10,15 @@ C:\Users\Abdelrahman3D\Desktop\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug
 C:\Users\Abdelrahman3D\Desktop\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\WalkingDino.pdb
 \\vmware-host\Shared Folders\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\WalkingDino.exe
 \\vmware-host\Shared Folders\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\WalkingDino.pdb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\WalkingDino.exe
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\WalkingDino.pdb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\SkinnedModel.dll
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\SkinnedModel.pdb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\WalkingDino.csprojResolveAssemblyReference.cache
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\WalkingDino.exe
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\WalkingDino.pdb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Dino.xnb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\DinoGreen_clr_0.xnb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\eyeBluePupil_0.xnb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\eye_clr_0.xnb
