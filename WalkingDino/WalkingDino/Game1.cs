@@ -21,9 +21,13 @@ namespace WalkingDino
         SpriteBatch spriteBatch;
 
         Model Dino;
-        AnimationPlayer DinoPlayer;
+        // AnimationPlayer DinoPlayer;
         ClipPlayer DinoClipPlayer;
         SkinningData DinoSkinningData;
+        AnimationClip DinoClip;
+
+        Controller Control;
+        List<Action> ActionList;
 
         public Game1()
         {
@@ -39,7 +43,18 @@ namespace WalkingDino
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // List of Keyboard Actions
+            ActionList = new List<Action>();
+            ActionList.Add(new Action("Up", Keys.Up));
+            ActionList.Add(new Action("Down", Keys.Down));
+            ActionList.Add(new Action("Right", Keys.Right));
+            ActionList.Add(new Action("Left", Keys.Left));
+            ActionList.Add(new Action("Jump", Keys.Space));
+            ActionList.Add(new Action("Camera", Keys.C));
+            ActionList.Add(new Action("Attack", Keys.A));
+            Control = new Controller(PlayerIndex.One, ActionList);
+
+
 
             base.Initialize();
         }
@@ -62,10 +77,8 @@ namespace WalkingDino
 
             // Create an animation player, and start decoding an animation clip.
             DinoClipPlayer = new ClipPlayer(DinoSkinningData, 24);
-
-            AnimationClip clip = DinoSkinningData.AnimationClips["Take 001"];
-
-           DinoClipPlayer.play(clip, 0, 84, true);
+            DinoClip = DinoSkinningData.AnimationClips["Take 001"];
+            DinoClipPlayer.play(DinoClip, 2, 11, true);
 
         }
 
@@ -89,7 +102,21 @@ namespace WalkingDino
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            if (Control.IsActionPressed("Up"))
+            {
+                DinoClipPlayer.play(DinoClip, 12, 31, true);
+            }
+               
+            if (Control.IsActionPressed("Left"))
+            {
+
+            }
+            Control.Update();
             DinoClipPlayer.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
+            
+
+            
+            
 
             base.Update(gameTime);
         }
@@ -105,7 +132,7 @@ namespace WalkingDino
             Matrix[] bones = DinoClipPlayer.GetSkinTransforms();
 
             // Compute camera matrices.
-            Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 10),
+            Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 50),
                                               new Vector3(0, 0, 0), Vector3.Up);
 
             Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
