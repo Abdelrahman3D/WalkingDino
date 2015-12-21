@@ -78,7 +78,7 @@ namespace WalkingDino
             // Create an animation player, and start decoding an animation clip.
             DinoClipPlayer = new ClipPlayer(DinoSkinningData, 24);
             DinoClip = DinoSkinningData.AnimationClips["Take 001"];
-            DinoClipPlayer.play(DinoClip, 2, 11, true);
+            DinoClipPlayer.Play(DinoClip, 2, 10, true);
 
         }
 
@@ -104,14 +104,23 @@ namespace WalkingDino
 
             if (Control.IsActionPressed("Up"))
             {
-                DinoClipPlayer.play(DinoClip, 12, 31, true);
-            }
-               
-            if (Control.IsActionPressed("Left"))
+                DinoClipPlayer.Switch(13, 32);
+            } 
+            else if (Control.IsActionPressed("Attack"))
             {
-
+                DinoClipPlayer.Switch(35, 63);
             }
+            else if (Control.IsActionPressed("Jump"))
+            {
+                DinoClipPlayer.Switch(65, 83);
+            }
+            else
+            {
+                DinoClipPlayer.Switch(2, 10);
+            }
+            
             Control.Update();
+            
             DinoClipPlayer.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
             
 

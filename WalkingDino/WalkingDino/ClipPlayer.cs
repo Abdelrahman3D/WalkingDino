@@ -34,17 +34,30 @@ namespace WalkingDino
             this.worldTransforms = new Matrix[skd.BindPose.Count];
             this.fps = fps;
         }
-        public void play(AnimationClip clip, float startFrame, float endFrame, bool loop)
+
+        public void Play(AnimationClip clip, float startFrame, float endFrame, bool loop)
         {
             this.currentClip = clip;
             // Convert from frame to Xna native Time span
             this.startTime = TimeSpan.FromMilliseconds(startFrame / fps * 1000); // Covert from secounds to milisecounds
             this.endTime = TimeSpan.FromMilliseconds(endFrame / fps * 1000);
             this.currentTime = startTime;
-
             this.isLooping = loop;
 
             keyFrameList = currentClip.Keyframes;
+        }
+
+        public void Switch(float start, float end)
+        {
+            TimeSpan sRange = TimeSpan.FromMilliseconds(start / fps * 1000);
+            TimeSpan eRange = TimeSpan.FromMilliseconds(end / fps * 1000);
+            if(!(currentTime >= sRange && currentTime <= eRange))
+            {
+                this.startTime = sRange;
+                this.endTime = eRange;
+                this.currentTime = startTime;
+
+            }
         }
 
         public Matrix[] GetTransformFromTime(TimeSpan ts)
