@@ -29,6 +29,10 @@ namespace WalkingDino
         Controller Control;
         List<Action> ActionList;
 
+        Vector3 DinoPosition;
+        Vector3 DinoVelocity;
+        float DinoRotation;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -55,7 +59,7 @@ namespace WalkingDino
             Control = new Controller(PlayerIndex.One, ActionList);
 
 
-
+            DinoRotation = 0;
             base.Initialize();
         }
 
@@ -78,7 +82,7 @@ namespace WalkingDino
             // Create an animation player, and start decoding an animation clip.
             DinoClipPlayer = new ClipPlayer(DinoSkinningData, 24);
             DinoClip = DinoSkinningData.AnimationClips["Take 001"];
-            DinoClipPlayer.Play(DinoClip, 2, 10, true);
+            DinoClipPlayer.Play(DinoClip, 1, 10, true);
 
         }
 
@@ -102,10 +106,29 @@ namespace WalkingDino
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            Control.Update();
+
+            DinoVelocity = new Vector3(0, 0, 0);
+            
+
+            if (Control.IsActionPressed("Left"))
+            {
+                DinoRotation += 1;
+            }
+            else if ((Control.IsActionPressed("Right")))
+            {
+                DinoRotation -= 1;
+            }
             if (Control.IsActionPressed("Up"))
             {
                 DinoClipPlayer.Switch(13, 32);
-            } 
+                DinoVelocity = new Vector3(0f, 0f, .3f);
+            }
+            else if (Control.IsActionPressed("Down"))
+            {
+                DinoClipPlayer.Switch(13, 32);
+                DinoVelocity = new Vector3(0f, 0f, -.2f);
+            }
             else if (Control.IsActionPressed("Attack"))
             {
                 DinoClipPlayer.Switch(35, 63);
@@ -118,13 +141,13 @@ namespace WalkingDino
             {
                 DinoClipPlayer.Switch(2, 10);
             }
-            
-            Control.Update();
-            
-            DinoClipPlayer.Update(gameTime.ElapsedGameTime, true, Matrix.Identity);
-            
 
-            
+
+            DinoPosition += Vector3.Transform(DinoVelocity, Matrix.CreateRotationY(MathHelper.ToRadians(DinoRotation)));
+
+            Matrix Translation = Matrix.CreateRotationY(MathHelper.ToRadians(DinoRotation)) * 
+                                 Matrix.CreateTranslation(DinoPosition);
+            DinoClipPlayer.Update(gameTime.ElapsedGameTime, true, Translation);
             
 
             base.Update(gameTime);
@@ -136,7 +159,7 @@ namespace WalkingDino
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.BlueViolet);
 
             Matrix[] bones = DinoClipPlayer.GetSkinTransforms();
 
@@ -161,7 +184,7 @@ namespace WalkingDino
 
                     effect.EnableDefaultLighting();
 
-                    effect.SpecularColor = new Vector3(0.25f);
+                    effect.SpecularColor = new Vector3(0.15f);
                     effect.SpecularPower = 16;
                 }
 
