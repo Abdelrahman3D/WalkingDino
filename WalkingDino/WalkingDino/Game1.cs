@@ -19,19 +19,29 @@ namespace WalkingDino
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        
+        // Dino modal
         Model Dino;
-        // AnimationPlayer DinoPlayer;
         ClipPlayer DinoClipPlayer;
         SkinningData DinoSkinningData;
         AnimationClip DinoClip;
 
+        // Keyboard controller
         Controller Control;
         List<Action> ActionList;
 
+        // Dino translation
         Vector3 DinoPosition;
         Vector3 DinoVelocity;
         float DinoRotation;
+
+        // Keys screen image
+        KeyImage Up;
+        KeyImage Down;
+        KeyImage Left;
+        KeyImage Right;
+        KeyImage Jump;
+        KeyImage Camera;
 
         public Game1()
         {
@@ -47,6 +57,11 @@ namespace WalkingDino
         /// </summary>
         protected override void Initialize()
         {
+            // Screen reslaution
+            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferHeight = 560;
+            graphics.ApplyChanges();
+
             // List of Keyboard Actions
             ActionList = new List<Action>();
             ActionList.Add(new Action("Up", Keys.Up));
@@ -57,6 +72,14 @@ namespace WalkingDino
             ActionList.Add(new Action("Camera", Keys.C));
             ActionList.Add(new Action("Attack", Keys.A));
             Control = new Controller(PlayerIndex.One, ActionList);
+
+            // Keyboard Screen Imgaes
+            Up = new KeyImage(new Vector2(750f, 380f));
+            Down = new KeyImage(new Vector2(750f, 420f));
+            Left = new KeyImage(new Vector2(710f, 420f));
+            Right = new KeyImage(new Vector2(790f, 420f));
+            Jump = new KeyImage(new Vector2(710f, 460f));
+            Camera = new KeyImage(new Vector2(150f, 420f));
 
 
             DinoRotation = 0;
@@ -84,6 +107,21 @@ namespace WalkingDino
             DinoClip = DinoSkinningData.AnimationClips["Take 001"];
             DinoClipPlayer.Play(DinoClip, 1, 10, true);
 
+
+            // Load screen keys images
+            Up.KeyOff = Content.Load<Texture2D>("img\\up_off");
+            Up.KeyOn = Content.Load<Texture2D>("img\\up_on");
+            Down.KeyOff = Content.Load<Texture2D>("img\\down_off");
+            Down.KeyOn = Content.Load<Texture2D>("img\\down_on");
+            Right.KeyOff = Content.Load<Texture2D>("img\\right_off");
+            Right.KeyOn = Content.Load<Texture2D>("img\\right_on");
+            Left.KeyOff = Content.Load<Texture2D>("img\\left_off");
+            Left.KeyOn = Content.Load<Texture2D>("img\\left_on");
+            Jump.KeyOff = Content.Load<Texture2D>("img\\space_off");
+            Jump.KeyOn = Content.Load<Texture2D>("img\\space_on");
+            Camera.KeyOff = Content.Load<Texture2D>("img\\cam_off");
+            Camera.KeyOn = Content.Load<Texture2D>("img\\cam_on");
+
         }
 
         /// <summary>
@@ -106,28 +144,38 @@ namespace WalkingDino
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            Up.Current = Up.KeyOff;
+            Down.Current = Down.KeyOff;
+            Left.Current = Left.KeyOff;
+            Right.Current = Right.KeyOff;
+            Jump.Current = Jump.KeyOff;
+            Camera.Current = Camera.KeyOff;
+
             Control.Update();
 
             DinoVelocity = new Vector3(0, 0, 0);
             
-
             if (Control.IsActionPressed("Left"))
             {
                 DinoRotation += 1;
+                Left.Current = Left.KeyOn;
             }
             else if ((Control.IsActionPressed("Right")))
             {
                 DinoRotation -= 1;
+                Right.Current = Right.KeyOn;
             }
             if (Control.IsActionPressed("Up"))
             {
                 DinoClipPlayer.Switch(13, 32);
                 DinoVelocity = new Vector3(0f, 0f, .3f);
+                Up.Current = Up.KeyOn;
             }
             else if (Control.IsActionPressed("Down"))
             {
                 DinoClipPlayer.Switch(13, 32);
                 DinoVelocity = new Vector3(0f, 0f, -.2f);
+                Down.Current = Down.KeyOn;
             }
             else if (Control.IsActionPressed("Attack"))
             {
@@ -136,6 +184,7 @@ namespace WalkingDino
             else if (Control.IsActionPressed("Jump"))
             {
                 DinoClipPlayer.Switch(65, 83);
+                Jump.Current = Jump.KeyOn;
             }
             else
             {
@@ -160,6 +209,9 @@ namespace WalkingDino
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.BlueViolet);
+
+            
+
 
             Matrix[] bones = DinoClipPlayer.GetSkinTransforms();
 
@@ -191,7 +243,18 @@ namespace WalkingDino
                 mesh.Draw();
             }
 
-            base.Draw(gameTime);
+
+            // Draw screen keys
+            spriteBatch.Begin();
+            spriteBatch.Draw(Up.Current, Up.KeyPosition, Color.Wheat);
+            spriteBatch.Draw(Down.Current, Down.KeyPosition, Color.Wheat);
+            spriteBatch.Draw(Right.Current, Right.KeyPosition, Color.Wheat);
+            spriteBatch.Draw(Left.Current, Left.KeyPosition, Color.Wheat);
+            spriteBatch.Draw(Jump.Current, Jump.KeyPosition, Color.Wheat);
+            spriteBatch.Draw(Camera.Current, Camera.KeyPosition, Color.Wheat);
+            spriteBatch.End();
+
+            
         }
     }
 }

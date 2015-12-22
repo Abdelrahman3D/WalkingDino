@@ -2,3 +2,15 @@ Content\DinoGreen_clr_0.xnb
 Content\Dino.xnb
 Content\eyeBluePupil_0.xnb
 Content\eye_clr_0.xnb
+Content\Img\cam_off.xnb
+Content\Img\cam_on.xnb
+Content\Img\down_off.xnb
+Content\Img\down_on.xnb
+Content\Img\left_off.xnb
+Content\Img\left_on.xnb
+Content\Img\right_off.xnb
+Content\Img\right_on.xnb
+Content\Img\space_off.xnb
+Content\Img\space_on.xnb
+Content\Img\up_off.xnb
+Content\Img\up_on.xnb
