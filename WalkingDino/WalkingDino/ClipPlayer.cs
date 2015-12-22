@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using SkinnedModel;
+using System.Threading.Tasks;
 
 namespace WalkingDino
 {
     class ClipPlayer
     {
+        public delegate void Animation();
+        public event Animation AnimationEnded;
         private Matrix[] boneTransforms;
         private Matrix[] skinTransforms;
         private Matrix[] worldTransforms;
@@ -22,8 +25,11 @@ namespace WalkingDino
         TimeSpan endTime;
         TimeSpan currentTime;
 
-        bool isLooping;
+        TimeSpan sRange;
+        TimeSpan eRange; 
 
+        bool isLooping;
+   
         float fps;
 
         public ClipPlayer(SkinningData skd, float fps)
@@ -49,15 +55,24 @@ namespace WalkingDino
 
         public void Switch(float start, float end)
         {
-            TimeSpan sRange = TimeSpan.FromMilliseconds(start / fps * 1000);
-            TimeSpan eRange = TimeSpan.FromMilliseconds(end / fps * 1000);
+            sRange = TimeSpan.FromMilliseconds(start / fps * 1000);
+            eRange = TimeSpan.FromMilliseconds(end / fps * 1000);
             if(!(currentTime >= sRange && currentTime <= eRange))
             {
                 this.startTime = sRange;
                 this.endTime = eRange;
                 this.currentTime = startTime;
-
             }
+        }
+         public bool InRange(float start, float end)
+        {
+            TimeSpan sRange = TimeSpan.FromMilliseconds(start / fps * 1000);
+            TimeSpan eRange = TimeSpan.FromMilliseconds(end / fps * 1000);
+            if (currentTime >= sRange && currentTime <= eRange)
+            {
+                return true;
+            }
+            return false;
         }
 
         public Matrix[] GetTransformFromTime(TimeSpan ts)
@@ -113,6 +128,11 @@ namespace WalkingDino
             for (int i = 0; i < skinTransforms.Length; i++)
             {
                 skinTransforms[i] = skinData.InverseBindPose[i] * worldTransforms[i];
+            }
+
+            if (currentTime == sRange && this.AnimationEnded != null)
+            {
+                this.AnimationEnded();
             }
 
         }

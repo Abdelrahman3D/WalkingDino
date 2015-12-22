@@ -108,6 +108,7 @@ namespace WalkingDino
             DinoClipPlayer = new ClipPlayer(DinoSkinningData, 24);
             DinoClip = DinoSkinningData.AnimationClips["Take 001"];
             DinoClipPlayer.Play(DinoClip, 1, 10, true);
+            DinoClipPlayer.AnimationEnded += DinoClipPlayer_AnimationEnded;
 
 
             // Load screen keys images
@@ -126,6 +127,11 @@ namespace WalkingDino
             Attack.KeyOff = Content.Load<Texture2D>("Icons\\Attack");
             Attack.KeyOn = Content.Load<Texture2D>("Icons\\AttackActive");
 
+        }
+
+        void DinoClipPlayer_AnimationEnded()
+        {
+            DinoClipPlayer.Switch(1, 10);
         }
 
         /// <summary>
@@ -176,31 +182,41 @@ namespace WalkingDino
             }
             if (Control.IsActionPressed("Up"))
             {
-                DinoClipPlayer.Switch(13, 32);
+                //DinoClipPlayer.Switch(13, 32);
                 DinoVelocity = new Vector3(0f, 0f, .3f);
                 Up.Current = Up.KeyOn;
             }
             else if (Control.IsActionPressed("Down"))
             {
-                DinoClipPlayer.Switch(13, 32);
+                //DinoClipPlayer.Switch(13, 32);
                 DinoVelocity = new Vector3(0f, 0f, -.2f);
                 Down.Current = Down.KeyOn;
             }
-            else if (Control.IsActionPressed("Attack"))
+            
+            if (Control.IsActionPressed("Up") || Control.IsActionPressed("Down"))
+            {
+                if (!DinoClipPlayer.InRange(65, 83))
+                    DinoClipPlayer.Switch(13, 32);
+            }
+            else
+            {
+                if(DinoClipPlayer.InRange(13, 32))
+                    DinoClipPlayer.Switch(1, 10);
+            }
+
+            
+
+
+            if (Control.IsActionPressed("Attack"))
             {
                 DinoClipPlayer.Switch(35, 63);
                 Attack.Current = Attack.KeyOn;
             }
             else if (Control.IsActionPressed("Jump"))
             {
-                DinoClipPlayer.Switch(65, 83);
                 Jump.Current = Jump.KeyOn;
+                DinoClipPlayer.Switch(65, 83);
             }
-            else
-            {
-                DinoClipPlayer.Switch(2, 10);
-            }
-
 
             DinoPosition += Vector3.Transform(DinoVelocity, Matrix.CreateRotationY(MathHelper.ToRadians(DinoRotation)));
 

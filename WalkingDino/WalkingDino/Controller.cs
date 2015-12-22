@@ -12,6 +12,7 @@ namespace WalkingDino
         public string Name;
         public Keys Key;
         public bool IsPressed;
+        public bool IsReleased;
         public float PressTime;
 
         public Action(string name, Keys key)
@@ -38,6 +39,18 @@ namespace WalkingDino
         public bool IsActionPressed(string name)
         {
             Action currentAction =new Action(" ", Keys.Escape);
+            foreach (Action action in actionList)
+            {
+                if (action.Name == name)
+                    currentAction = action;
+            }
+            return currentAction.IsPressed;
+        }
+
+        // Check if the action released
+        public bool IsActionRelesed(string name)
+        {
+            Action currentAction = new Action(" ", Keys.Escape);
             foreach (Action action in actionList)
             {
                 if (action.Name == name)
