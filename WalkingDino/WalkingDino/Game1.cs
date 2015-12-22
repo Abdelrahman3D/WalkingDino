@@ -42,6 +42,7 @@ namespace WalkingDino
         KeyImage Right;
         KeyImage Jump;
         KeyImage Camera;
+        KeyImage Attack;
 
         public Game1()
         {
@@ -80,6 +81,7 @@ namespace WalkingDino
             Right = new KeyImage(new Vector2(790f, 420f));
             Jump = new KeyImage(new Vector2(710f, 460f));
             Camera = new KeyImage(new Vector2(150f, 420f));
+            Attack = new KeyImage(new Vector2(110f, 380f));
 
 
             DinoRotation = 0;
@@ -109,18 +111,20 @@ namespace WalkingDino
 
 
             // Load screen keys images
-            Up.KeyOff = Content.Load<Texture2D>("img\\up_off");
-            Up.KeyOn = Content.Load<Texture2D>("img\\up_on");
-            Down.KeyOff = Content.Load<Texture2D>("img\\down_off");
-            Down.KeyOn = Content.Load<Texture2D>("img\\down_on");
-            Right.KeyOff = Content.Load<Texture2D>("img\\right_off");
-            Right.KeyOn = Content.Load<Texture2D>("img\\right_on");
-            Left.KeyOff = Content.Load<Texture2D>("img\\left_off");
-            Left.KeyOn = Content.Load<Texture2D>("img\\left_on");
-            Jump.KeyOff = Content.Load<Texture2D>("img\\space_off");
-            Jump.KeyOn = Content.Load<Texture2D>("img\\space_on");
-            Camera.KeyOff = Content.Load<Texture2D>("img\\cam_off");
-            Camera.KeyOn = Content.Load<Texture2D>("img\\cam_on");
+            Up.KeyOff = Content.Load<Texture2D>("Icons\\Up");
+            Up.KeyOn = Content.Load<Texture2D>("Icons\\UpActive");
+            Down.KeyOff = Content.Load<Texture2D>("Icons\\Down");
+            Down.KeyOn = Content.Load<Texture2D>("Icons\\DownActive");
+            Right.KeyOff = Content.Load<Texture2D>("Icons\\Right");
+            Right.KeyOn = Content.Load<Texture2D>("Icons\\RightActive");
+            Left.KeyOff = Content.Load<Texture2D>("Icons\\Left");
+            Left.KeyOn = Content.Load<Texture2D>("Icons\\LeftActive");
+            Jump.KeyOff = Content.Load<Texture2D>("Icons\\Jump");
+            Jump.KeyOn = Content.Load<Texture2D>("Icons\\JumpActive");
+            Camera.KeyOff = Content.Load<Texture2D>("Icons\\Camera");
+            Camera.KeyOn = Content.Load<Texture2D>("Icons\\CameraActive");
+            Attack.KeyOff = Content.Load<Texture2D>("Icons\\Attack");
+            Attack.KeyOn = Content.Load<Texture2D>("Icons\\AttackActive");
 
         }
 
@@ -150,6 +154,7 @@ namespace WalkingDino
             Right.Current = Right.KeyOff;
             Jump.Current = Jump.KeyOff;
             Camera.Current = Camera.KeyOff;
+            Attack.Current = Attack.KeyOff;
 
             Control.Update();
 
@@ -180,6 +185,7 @@ namespace WalkingDino
             else if (Control.IsActionPressed("Attack"))
             {
                 DinoClipPlayer.Switch(35, 63);
+                Attack.Current = Attack.KeyOn;
             }
             else if (Control.IsActionPressed("Jump"))
             {
@@ -208,7 +214,7 @@ namespace WalkingDino
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.BlueViolet);
+            GraphicsDevice.Clear(Color.Black);
 
             
 
@@ -252,6 +258,7 @@ namespace WalkingDino
             spriteBatch.Draw(Left.Current, Left.KeyPosition, Color.Wheat);
             spriteBatch.Draw(Jump.Current, Jump.KeyPosition, Color.Wheat);
             spriteBatch.Draw(Camera.Current, Camera.KeyPosition, Color.Wheat);
+            spriteBatch.Draw(Attack.Current, Attack.KeyPosition, Color.Wheat);
             spriteBatch.End();
 
             

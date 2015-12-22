@@ -73,112 +73,130 @@
       <Time>2015-12-20T10:09:45.3296939-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\cam_off.jpg</Source>
-      <Name>Img\cam_off</Name>
+      <Source>Icons\Down.png</Source>
+      <Name>Icons\Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\cam_off.xnb</Output>
-      <Time>2015-12-22T03:15:30.6533028-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Down.xnb</Output>
+      <Time>2015-12-22T02:35:13-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\cam_on.jpg</Source>
-      <Name>Img\cam_on</Name>
+      <Source>Icons\DownActive.png</Source>
+      <Name>Icons\DownActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\cam_on.xnb</Output>
-      <Time>2015-12-22T03:15:30.6814296-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\DownActive.xnb</Output>
+      <Time>2015-12-22T02:35:13-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\down_off.jpg</Source>
-      <Name>Img\down_off</Name>
+      <Source>Icons\Left.png</Source>
+      <Name>Icons\Left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\down_off.xnb</Output>
-      <Time>2015-12-22T03:15:30.6814296-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Left.xnb</Output>
+      <Time>2015-12-22T02:35:13-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\down_on.jpg</Source>
-      <Name>Img\down_on</Name>
+      <Source>Icons\LeftActive.png</Source>
+      <Name>Icons\LeftActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\down_on.xnb</Output>
-      <Time>2015-12-22T03:15:30.6814296-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\LeftActive.xnb</Output>
+      <Time>2015-12-22T02:35:13-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\left_off.jpg</Source>
-      <Name>Img\left_off</Name>
+      <Source>Icons\Right.png</Source>
+      <Name>Icons\Right</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\left_off.xnb</Output>
-      <Time>2015-12-22T03:15:30.6954903-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Right.xnb</Output>
+      <Time>2015-12-22T02:35:12-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\left_on.jpg</Source>
-      <Name>Img\left_on</Name>
+      <Source>Icons\RightActive.png</Source>
+      <Name>Icons\RightActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\left_on.xnb</Output>
-      <Time>2015-12-22T03:15:30.6954903-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\RightActive.xnb</Output>
+      <Time>2015-12-22T02:35:12-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\right_off.jpg</Source>
-      <Name>Img\right_off</Name>
+      <Source>Icons\Up.png</Source>
+      <Name>Icons\Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\right_off.xnb</Output>
-      <Time>2015-12-22T03:15:30.7095564-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Up.xnb</Output>
+      <Time>2015-12-22T02:35:12-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\right_on.jpg</Source>
-      <Name>Img\right_on</Name>
+      <Source>Icons\UpActive.png</Source>
+      <Name>Icons\UpActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\right_on.xnb</Output>
-      <Time>2015-12-22T03:15:30.7095564-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\UpActive.xnb</Output>
+      <Time>2015-12-22T02:35:12-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\space_off.jpg</Source>
-      <Name>Img\space_off</Name>
+      <Source>Icons\Attack.png</Source>
+      <Name>Icons\Attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\space_off.xnb</Output>
-      <Time>2015-12-22T03:15:30.7236177-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Attack.xnb</Output>
+      <Time>2015-12-22T02:52:01-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\space_on.jpg</Source>
-      <Name>Img\space_on</Name>
+      <Source>Icons\AttackActive.png</Source>
+      <Name>Icons\AttackActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\space_on.xnb</Output>
-      <Time>2015-12-22T03:15:30.7236177-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\AttackActive.xnb</Output>
+      <Time>2015-12-22T02:52:01-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\up_off.jpg</Source>
-      <Name>Img\up_off</Name>
+      <Source>Icons\Camera.png</Source>
+      <Name>Icons\Camera</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\up_off.xnb</Output>
-      <Time>2015-12-22T03:15:30.7236177-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Camera.xnb</Output>
+      <Time>2015-12-22T02:52:01-08:00</Time>
     </Item>
     <Item>
-      <Source>Img\up_on.jpg</Source>
-      <Name>Img\up_on</Name>
+      <Source>Icons\CameraActive.png</Source>
+      <Name>Icons\CameraActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Img\up_on.xnb</Output>
-      <Time>2015-12-22T03:15:30.7376789-08:00</Time>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\CameraActive.xnb</Output>
+      <Time>2015-12-22T02:52:01-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Icons\Jump.png</Source>
+      <Name>Icons\Jump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Jump.xnb</Output>
+      <Time>2015-12-22T02:52:01-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Icons\JumpActive.png</Source>
+      <Name>Icons\JumpActive</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\JumpActive.xnb</Output>
+      <Time>2015-12-22T02:52:01-08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

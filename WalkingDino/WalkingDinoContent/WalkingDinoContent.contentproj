@@ -43,63 +43,75 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Img\cam_off.jpg">
-      <Name>cam_off</Name>
+    <Compile Include="Icons\Down.png">
+      <Name>Down</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\cam_on.jpg">
-      <Name>cam_on</Name>
+    <Compile Include="Icons\DownActive.png">
+      <Name>DownActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\down_off.jpg">
-      <Name>down_off</Name>
+    <Compile Include="Icons\Left.png">
+      <Name>Left</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\down_on.jpg">
-      <Name>down_on</Name>
+    <Compile Include="Icons\LeftActive.png">
+      <Name>LeftActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\left_off.jpg">
-      <Name>left_off</Name>
+    <Compile Include="Icons\Right.png">
+      <Name>Right</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\left_on.jpg">
-      <Name>left_on</Name>
+    <Compile Include="Icons\RightActive.png">
+      <Name>RightActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\right_off.jpg">
-      <Name>right_off</Name>
+    <Compile Include="Icons\Up.png">
+      <Name>Up</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\right_on.jpg">
-      <Name>right_on</Name>
+    <Compile Include="Icons\UpActive.png">
+      <Name>UpActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\space_off.jpg">
-      <Name>space_off</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Icons\Attack.png">
+      <Name>Attack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\space_on.jpg">
-      <Name>space_on</Name>
+    <Compile Include="Icons\AttackActive.png">
+      <Name>AttackActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\up_off.jpg">
-      <Name>up_off</Name>
+    <Compile Include="Icons\Camera.png">
+      <Name>Camera</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Img\up_on.jpg">
-      <Name>up_on</Name>
+    <Compile Include="Icons\CameraActive.png">
+      <Name>CameraActive</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Icons\Jump.png">
+      <Name>Jump</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Icons\JumpActive.png">
+      <Name>JumpActive</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
