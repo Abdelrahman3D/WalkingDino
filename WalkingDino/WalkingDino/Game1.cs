@@ -36,13 +36,13 @@ namespace WalkingDino
         float DinoRotation;
 
         // Keys screen image
-        KeyImage Up;
-        KeyImage Down;
-        KeyImage Left;
-        KeyImage Right;
-        KeyImage Jump;
-        KeyImage Camera;
-        KeyImage Attack;
+        IconImage Up;
+        IconImage Down;
+        IconImage Left;
+        IconImage Right;
+        IconImage Jump;
+        IconImage Camera;
+        IconImage Attack;
 
         public Game1()
         {
@@ -75,13 +75,13 @@ namespace WalkingDino
             Control = new Controller(PlayerIndex.One, ActionList);
 
             // Keyboard Screen Imgaes
-            Up = new KeyImage(new Vector2(750f, 380f));
-            Down = new KeyImage(new Vector2(750f, 420f));
-            Left = new KeyImage(new Vector2(710f, 420f));
-            Right = new KeyImage(new Vector2(790f, 420f));
-            Jump = new KeyImage(new Vector2(710f, 460f));
-            Camera = new KeyImage(new Vector2(150f, 420f));
-            Attack = new KeyImage(new Vector2(110f, 380f));
+            Up = new IconImage(new Vector2(750f, 380f));
+            Down = new IconImage(new Vector2(750f, 420f));
+            Left = new IconImage(new Vector2(710f, 420f));
+            Right = new IconImage(new Vector2(790f, 420f));
+            Jump = new IconImage(new Vector2(710f, 460f));
+            Camera = new IconImage(new Vector2(150f, 420f));
+            Attack = new IconImage(new Vector2(110f, 380f));
 
 
             DinoRotation = 0;
@@ -148,6 +148,8 @@ namespace WalkingDino
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+
+            // Screen Icons
             Up.Current = Up.KeyOff;
             Down.Current = Down.KeyOff;
             Left.Current = Left.KeyOff;
@@ -156,6 +158,8 @@ namespace WalkingDino
             Camera.Current = Camera.KeyOff;
             Attack.Current = Attack.KeyOff;
 
+
+            // Game controller
             Control.Update();
 
             DinoVelocity = new Vector3(0, 0, 0);
@@ -230,7 +234,12 @@ namespace WalkingDino
                                                                     1,
                                                                     10000);
 
-            // Render the skinned mesh.
+            // Reset 
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+
+
             foreach (ModelMesh mesh in Dino.Meshes)
             {
                 foreach (SkinnedEffect effect in mesh.Effects)
@@ -250,8 +259,8 @@ namespace WalkingDino
             }
 
 
-            // Draw screen keys
-            spriteBatch.Begin();
+            // Draw icons on screen
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             spriteBatch.Draw(Up.Current, Up.KeyPosition, Color.Wheat);
             spriteBatch.Draw(Down.Current, Down.KeyPosition, Color.Wheat);
             spriteBatch.Draw(Right.Current, Right.KeyPosition, Color.Wheat);

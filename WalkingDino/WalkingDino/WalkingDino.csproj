@@ -74,7 +74,7 @@
   <ItemGroup>
     <Compile Include="ClipPlayer.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="Keys.cs" />
+    <Compile Include="Icons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
