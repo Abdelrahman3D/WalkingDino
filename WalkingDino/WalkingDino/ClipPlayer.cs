@@ -130,6 +130,7 @@ namespace WalkingDino
                 skinTransforms[i] = skinData.InverseBindPose[i] * worldTransforms[i];
             }
 
+            // call event when animation ends
             if (currentTime == sRange && this.AnimationEnded != null)
             {
                 this.AnimationEnded();

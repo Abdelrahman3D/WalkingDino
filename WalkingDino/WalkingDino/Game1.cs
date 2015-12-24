@@ -26,14 +26,14 @@ namespace WalkingDino
         SkinningData DinoSkinningData;
         AnimationClip DinoClip;
 
-        // Keyboard controller
-        Controller Control;
-        List<Action> ActionList;
-
         // Dino translation
         Vector3 DinoPosition;
         Vector3 DinoVelocity;
         float DinoRotation;
+
+        // Keyboard controller
+        Controller Control;
+        List<Action> ActionList;
 
         // Keys screen image
         IconImage Up;
@@ -43,6 +43,11 @@ namespace WalkingDino
         IconImage Jump;
         IconImage Camera;
         IconImage Attack;
+
+        // Camera
+        float cameraArc = 0;
+        float cameraRotation = 0;
+        float cameraDistance = -50;
 
         public Game1()
         {
@@ -70,8 +75,11 @@ namespace WalkingDino
             ActionList.Add(new Action("Right", Keys.Right));
             ActionList.Add(new Action("Left", Keys.Left));
             ActionList.Add(new Action("Jump", Keys.Space));
-            ActionList.Add(new Action("Camera", Keys.C));
             ActionList.Add(new Action("Attack", Keys.A));
+            ActionList.Add(new Action("Camera", Keys.C));
+            ActionList.Add(new Action("Reset", Keys.R));
+            ActionList.Add(new Action("ZoomIn", Keys.Z));
+            ActionList.Add(new Action("ZoomOut", Keys.X));
             Control = new Controller(PlayerIndex.One, ActionList);
 
             // Keyboard Screen Imgaes
@@ -83,7 +91,7 @@ namespace WalkingDino
             Camera = new IconImage(new Vector2(150f, 420f));
             Attack = new IconImage(new Vector2(110f, 380f));
 
-
+       
             DinoRotation = 0;
             base.Initialize();
         }
@@ -169,54 +177,109 @@ namespace WalkingDino
             Control.Update();
 
             DinoVelocity = new Vector3(0, 0, 0);
+
+            if (!(Control.IsActionPressed("Camera")))
+            {
+                // Change Dino translation
+                if (Control.IsActionPressed("Left"))
+                {
+                    DinoRotation += 1;
+                    Left.Current = Left.KeyOn;
+                }
+                else if ((Control.IsActionPressed("Right")))
+                {
+                    DinoRotation -= 1;
+                    Right.Current = Right.KeyOn;
+                }
+                if (Control.IsActionPressed("Up"))
+                {
+                    DinoVelocity = new Vector3(0f, 0f, .3f);
+                    Up.Current = Up.KeyOn;
+                }
+                else if (Control.IsActionPressed("Down"))
+                {
+                    DinoVelocity = new Vector3(0f, 0f, -.2f);
+                    Down.Current = Down.KeyOn;
+                }
             
-            if (Control.IsActionPressed("Left"))
-            {
-                DinoRotation += 1;
-                Left.Current = Left.KeyOn;
-            }
-            else if ((Control.IsActionPressed("Right")))
-            {
-                DinoRotation -= 1;
-                Right.Current = Right.KeyOn;
-            }
-            if (Control.IsActionPressed("Up"))
-            {
-                //DinoClipPlayer.Switch(13, 32);
-                DinoVelocity = new Vector3(0f, 0f, .3f);
-                Up.Current = Up.KeyOn;
-            }
-            else if (Control.IsActionPressed("Down"))
-            {
-                //DinoClipPlayer.Switch(13, 32);
-                DinoVelocity = new Vector3(0f, 0f, -.2f);
-                Down.Current = Down.KeyOn;
-            }
-            
-            if (Control.IsActionPressed("Up") || Control.IsActionPressed("Down"))
-            {
-                if (!DinoClipPlayer.InRange(65, 83))
-                    DinoClipPlayer.Switch(13, 32);
+                // Change animation clip
+                if (Control.IsActionPressed("Up") || Control.IsActionPressed("Down"))
+                {
+                    if (!DinoClipPlayer.InRange(65, 83))
+                        DinoClipPlayer.Switch(13, 32);
+                }
+                else
+                {
+                    if(DinoClipPlayer.InRange(13, 32))
+                        DinoClipPlayer.Switch(1, 10);
+                }
+
+                if (Control.IsActionPressed("Attack"))
+                {
+                    DinoClipPlayer.Switch(35, 63);
+                    Attack.Current = Attack.KeyOn;
+                }
+                else if (Control.IsActionPressed("Jump"))
+                {
+                    Jump.Current = Jump.KeyOn;
+                    DinoClipPlayer.Switch(65, 83);
+                }
+                if (Control.IsActionPressed("Reset"))
+                {
+                    DinoPosition = new Vector3(0, 0, 0);
+                }
             }
             else
             {
-                if(DinoClipPlayer.InRange(13, 32))
-                    DinoClipPlayer.Switch(1, 10);
+                Camera.Current = Camera.KeyOn;
+                // Check for input to rotate the camera up and down around the model.
+                if (Control.IsActionPressed("Up"))
+                {
+                    cameraArc += 1f;
+                    Up.Current = Up.KeyOn;
+                }
+                else if (Control.IsActionPressed("Down"))
+                {
+                    cameraArc += -1f;
+                    Down.Current = Down.KeyOn;
+                }
+
+                // Limit the arc movement.
+                if (cameraArc > 90.0f)
+                    cameraArc = 90.0f;
+                else if (cameraArc < -90.0f)
+                    cameraArc = -90.0f;
+
+
+                if (Control.IsActionPressed("Left"))
+                {
+                    cameraRotation -= 1f;
+                    Left.Current = Left.KeyOn;
+                }
+                else if (Control.IsActionPressed("Right"))
+                {
+                    cameraRotation += 1f;
+                    Right.Current = Right.KeyOn;
+                }
+
+                if (Control.IsActionPressed("ZoomIn"))
+                    cameraDistance += 0.25f;
+
+                else if (Control.IsActionPressed("ZoomOut"))
+                    cameraDistance += -0.25f;
+
+                // Limit the camera distance.
+                if (cameraDistance > 500.0f)
+                    cameraDistance = 500.0f;
+
+                if (Control.IsActionPressed("Reset"))
+                {
+                    cameraArc = 0;
+                    cameraRotation = 0;
+                    cameraDistance = -50;
+                }
             }
 
-            
-
-
-            if (Control.IsActionPressed("Attack"))
-            {
-                DinoClipPlayer.Switch(35, 63);
-                Attack.Current = Attack.KeyOn;
-            }
-            else if (Control.IsActionPressed("Jump"))
-            {
-                Jump.Current = Jump.KeyOn;
-                DinoClipPlayer.Switch(65, 83);
-            }
 
             DinoPosition += Vector3.Transform(DinoVelocity, Matrix.CreateRotationY(MathHelper.ToRadians(DinoRotation)));
 
@@ -241,8 +304,13 @@ namespace WalkingDino
 
             Matrix[] bones = DinoClipPlayer.GetSkinTransforms();
 
+            //// Compute camera matrices.
+            //Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 50),
+            //                                  new Vector3(0, 0, 0), Vector3.Up);
             // Compute camera matrices.
-            Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 50),
+            Matrix view = Matrix.CreateRotationY(MathHelper.ToRadians(cameraRotation)) *        // change camera rotation
+                          Matrix.CreateRotationX(MathHelper.ToRadians(cameraArc)) *             // change camera orbit
+                          Matrix.CreateLookAt(new Vector3(20, 20, -cameraDistance),             // change camera looking place
                                               new Vector3(0, 0, 0), Vector3.Up);
 
             Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
@@ -285,8 +353,6 @@ namespace WalkingDino
             spriteBatch.Draw(Camera.Current, Camera.KeyPosition, Color.Wheat);
             spriteBatch.Draw(Attack.Current, Attack.KeyPosition, Color.Wheat);
             spriteBatch.End();
-
-            
         }
     }
 }
