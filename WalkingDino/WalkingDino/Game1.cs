@@ -22,6 +22,7 @@ namespace WalkingDino
         
         // Dino modal
         Model Dino;
+        Model Ground;
         ClipPlayer DinoClipPlayer;
         SkinningData DinoSkinningData;
         AnimationClip DinoClip;
@@ -105,8 +106,9 @@ namespace WalkingDino
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Load the model.
+            // Load models to the game.
             Dino = Content.Load<Model>("Dino");
+            Ground = Content.Load<Model>("ground");
 
             // Look up our custom skinning information.
             DinoSkinningData = Dino.Tag as SkinningData;
@@ -135,11 +137,6 @@ namespace WalkingDino
             Attack.KeyOff = Content.Load<Texture2D>("Icons\\Attack");
             Attack.KeyOn = Content.Load<Texture2D>("Icons\\AttackActive");
 
-        }
-
-        void DinoClipPlayer_AnimationEnded()
-        {
-            DinoClipPlayer.Switch(1, 10);
         }
 
         /// <summary>
@@ -304,10 +301,8 @@ namespace WalkingDino
 
             Matrix[] bones = DinoClipPlayer.GetSkinTransforms();
 
-            //// Compute camera matrices.
-            //Matrix view = Matrix.CreateLookAt(new Vector3(20, 20, 50),
-            //                                  new Vector3(0, 0, 0), Vector3.Up);
-            // Compute camera matrices.
+            Matrix world = Matrix.CreateWorld(new Vector3(0, 0, 0) , Vector3.Forward, Vector3.Up);
+
             Matrix view = Matrix.CreateRotationY(MathHelper.ToRadians(cameraRotation)) *        // change camera rotation
                           Matrix.CreateRotationX(MathHelper.ToRadians(cameraArc)) *             // change camera orbit
                           Matrix.CreateLookAt(new Vector3(20, 20, -cameraDistance),             // change camera looking place
@@ -318,12 +313,12 @@ namespace WalkingDino
                                                                     1,
                                                                     10000);
 
-            // Reset 
+            // Reset graphics
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
-
+            // Display Dino
             foreach (ModelMesh mesh in Dino.Meshes)
             {
                 foreach (SkinnedEffect effect in mesh.Effects)
@@ -342,6 +337,20 @@ namespace WalkingDino
                 mesh.Draw();
             }
 
+            // Display ground
+            foreach (ModelMesh mesh in Ground.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.World = world;
+                    effect.View = view;
+                    effect.Projection = projection;
+
+                }
+
+                mesh.Draw();
+            }
+
 
             // Draw icons on screen
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
@@ -353,6 +362,12 @@ namespace WalkingDino
             spriteBatch.Draw(Camera.Current, Camera.KeyPosition, Color.Wheat);
             spriteBatch.Draw(Attack.Current, Attack.KeyPosition, Color.Wheat);
             spriteBatch.End();
+        }
+
+        // This function use for rest dino animation to stand by
+        void DinoClipPlayer_AnimationEnded()
+        {
+            DinoClipPlayer.Switch(1, 10);
         }
     }
 }

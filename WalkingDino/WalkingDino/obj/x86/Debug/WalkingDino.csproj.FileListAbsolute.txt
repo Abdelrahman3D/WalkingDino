@@ -36,3 +36,4 @@ C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Deb
 C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\CameraActive.xnb
 C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\Jump.xnb
 C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\Icons\JumpActive.xnb
+C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\ground.xnb
