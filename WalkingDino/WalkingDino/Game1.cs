@@ -69,6 +69,8 @@ namespace WalkingDino
             graphics.PreferredBackBufferHeight = 560;
             graphics.ApplyChanges();
 
+            
+
             // List of Keyboard Actions
             ActionList = new List<Action>();
             ActionList.Add(new Action("Up", Keys.Up));
@@ -317,7 +319,7 @@ namespace WalkingDino
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
-
+            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
             // Display Dino
             foreach (ModelMesh mesh in Dino.Meshes)
             {

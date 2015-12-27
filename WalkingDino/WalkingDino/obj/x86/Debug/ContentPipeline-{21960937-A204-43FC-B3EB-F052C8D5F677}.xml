@@ -205,10 +205,10 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\bin\x86\Debug\Content\ground.xnb</Output>
-      <Time>2015-12-27T01:14:05.8664524-08:00</Time>
+      <Time>2015-12-27T00:01:59-08:00</Time>
       <Dependency>
         <Key>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\ground_0.xml</Key>
-        <Value>2015-12-27T01:14:09.5227073-08:00</Value>
+        <Value>2015-12-27T02:01:05.4419868-08:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -216,7 +216,7 @@
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>C:\Users\Abdelrahman3D\Documents\WalkingDino\WalkingDino\WalkingDino\obj\x86\Debug\ground_0.xml</Output>
-      <Time>2015-12-27T01:14:05.8664524-08:00</Time>
+      <Time>2015-12-27T00:01:59-08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
